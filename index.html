@@ -5,11 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ritual App Hub</title>
   
-  <!-- Favicon / Icon Tab -->
+  <!-- Favicon -->
   <link rel="icon" type="image/png" href="ritual-tab-icon.png">
   <link rel="apple-touch-icon" href="ritual-tab-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="ritual-tab-icon.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="ritual-tab-icon.png">
 
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -149,7 +147,7 @@
   </footer>
 
   <script>
-    // Network Animation - Hanya Dot yang Menyala
+    // Network Animation
     const canvas = document.getElementById('networkCanvas');
     const ctx = canvas.getContext('2d');
     let particles = [];
@@ -249,25 +247,51 @@
       {name:"Siggy Pixelverse", desc:"Pixel art universe by Siggy.", category:"GameFi", image:"https://raw.githubusercontent.com/nostalgiagila/ritual-testnet-hub/main/images/Screenshot_31.png", link:"https://siggy-pixelverse.lovable.app/"},
       
       // Project ke-33
-      {name:"Ritual App Hub", desc:"List of applications built by the Ritual community.", category:"Hub", image:"https://raw.githubusercontent.com/nostalgiagila/ritual-testnet-hub/main/images/Screenshot_32.png", link:"https://ritualapp-hub.vercel.app"}
+      {name:"Ritual App Hub", desc:"List of applications built by the Ritual community.", category:"Hub", image:"https://raw.githubusercontent.com/nostalgiagila/ritual-testnet-hub/main/images/Screenshot_32.png", link:"https://ritualapphub.vercel.app"}
     ];
 
     const grid = document.getElementById('project-grid');
-    projects.forEach(p => {
-      const cardHTML = `
-        <div class="project-card bg-zinc-950 border border-zinc-800 rounded-3xl overflow-hidden group">
-          <img src="${p.image}" alt="${p.name}">
-          <div class="p-5 flex-1 flex flex-col">
-            <h3 class="text-lg font-semibold mb-2">${p.name}</h3>
-            <p class="text-zinc-400 text-sm leading-tight mb-4 flex-1">${p.desc}</p>
-            <span class="inline-block px-3 py-1 text-xs bg-emerald-900 text-emerald-400 rounded-full mb-4">${p.category}</span>
-            <a href="${p.link}" target="_blank" class="mt-auto block w-full py-3 text-center border border-emerald-500 hover:bg-emerald-500 hover:text-black rounded-2xl text-sm font-medium transition">
-              Launch Project →
-            </a>
+
+    // Fungsi Render Projects
+    function renderProjects(filteredProjects) {
+      grid.innerHTML = '';
+      filteredProjects.forEach(p => {
+        const cardHTML = `
+          <div class="project-card bg-zinc-950 border border-zinc-800 rounded-3xl overflow-hidden group">
+            <img src="${p.image}" alt="${p.name}">
+            <div class="p-5 flex-1 flex flex-col">
+              <h3 class="text-lg font-semibold mb-2">${p.name}</h3>
+              <p class="text-zinc-400 text-sm leading-tight mb-4 flex-1">${p.desc}</p>
+              <span class="inline-block px-3 py-1 text-xs bg-emerald-900 text-emerald-400 rounded-full mb-4">${p.category}</span>
+              <a href="${p.link}" target="_blank" class="mt-auto block w-full py-3 text-center border border-emerald-500 hover:bg-emerald-500 hover:text-black rounded-2xl text-sm font-medium transition">
+                Launch Project →
+              </a>
+            </div>
           </div>
-        </div>
-      `;
-      grid.innerHTML += cardHTML;
+        `;
+        grid.innerHTML += cardHTML;
+      });
+    }
+
+    // Render semua project saat pertama kali load
+    renderProjects(projects);
+
+    // Search Functionality (Real-time)
+    document.getElementById('searchInput').addEventListener('input', (e) => {
+      const searchTerm = e.target.value.toLowerCase().trim();
+      
+      if (searchTerm === '') {
+        renderProjects(projects);
+        return;
+      }
+
+      const filtered = projects.filter(p => 
+        p.name.toLowerCase().includes(searchTerm) ||
+        p.desc.toLowerCase().includes(searchTerm) ||
+        p.category.toLowerCase().includes(searchTerm)
+      );
+      
+      renderProjects(filtered);
     });
 
     // Navigasi
