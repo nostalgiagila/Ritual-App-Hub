@@ -142,7 +142,7 @@
         <a href="https://x.com/ritualnet" target="_blank" class="hover:text-white transition"><i class="fab fa-x-twitter"></i></a>
         <a href="https://explorer.ritualfoundation.org" target="_blank" class="hover:text-white transition"><i class="fas fa-chart-bar"></i></a>
       </div>
-      <p class="text-xs mt-6 text-zinc-600">© 2026 Ritual Testnet Hub • Not affiliated with Ritual Foundation</p>
+      <p class="text-xs mt-6 text-zinc-600">© 2026 Ritual App Hub • A fan-made community project<br>Not affiliated with Ritual Foundation</p>
     </div>
   </footer>
 
@@ -212,7 +212,7 @@
     for (let i = 0; i < 80; i++) particles.push(new Particle());
     animate();
 
-    // 33 Projects
+    // === PROJECTS DATA ===
     const projects = [
       {name:"Ritual Token Launcher", desc:"Easy token launcher on Ritual testnet.", category:"Tool", image:"https://raw.githubusercontent.com/nostalgiagila/ritual-testnet-hub/main/images/Screenshot_1.png", link:"https://ritual-token-launch--rizkyalvonzo8.replit.app/"},
       {name:"Ritual On-Chain ID", desc:"Decentralized identity system on Ritual.", category:"Infrastructure", image:"https://raw.githubusercontent.com/nostalgiagila/ritual-testnet-hub/main/images/Screenshot_2.png", link:"https://ritual-onchain-id.vercel.app/"},
@@ -246,13 +246,15 @@
       {name:"Ritual Bubble Shooter", desc:"Classic bubble shooter game.", category:"GameFi", image:"https://raw.githubusercontent.com/nostalgiagila/ritual-testnet-hub/main/images/Screenshot_30.png", link:"https://ritual-bubble-shooter-jt.lovable.app/"},
       {name:"Siggy Pixelverse", desc:"Pixel art universe by Siggy.", category:"GameFi", image:"https://raw.githubusercontent.com/nostalgiagila/ritual-testnet-hub/main/images/Screenshot_31.png", link:"https://siggy-pixelverse.lovable.app/"},
       
-      // Project ke-33
-      {name:"Ritual App Hub", desc:"List of applications built by the Ritual community.", category:"Hub", image:"https://raw.githubusercontent.com/nostalgiagila/ritual-testnet-hub/main/images/Screenshot_32.png", link:"https://ritualapphub.vercel.app"}
+      // Project Ritual Check (Baru)
+      {name:"Ritual Check", desc:"Comprehensive checker for Ritual Testnet activity and stats.", category:"Tool", image:"https://raw.githubusercontent.com/nostalgiagila/ritual-testnet-hub/main/images/Screenshot_34.png", link:"https://ritual-chest-unlock--riyaderiyade200.replit.app"},
+
+      // Project Terakhir
+      {name:"Ritual App Hub", desc:"List of applications built by the Ritual community.", category:"Hub", image:"https://raw.githubusercontent.com/nostalgiagila/ritual-testnet-hub/main/images/Screenshot_32.png", link:"https://ritualapp-hub.vercel.app"}
     ];
 
     const grid = document.getElementById('project-grid');
 
-    // Fungsi Render Projects
     function renderProjects(filteredProjects) {
       grid.innerHTML = '';
       filteredProjects.forEach(p => {
@@ -273,28 +275,24 @@
       });
     }
 
-    // Render semua project saat pertama kali load
     renderProjects(projects);
 
-    // Search Functionality (Real-time)
+    // Search Functionality
     document.getElementById('searchInput').addEventListener('input', (e) => {
-      const searchTerm = e.target.value.toLowerCase().trim();
-      
-      if (searchTerm === '') {
+      const term = e.target.value.toLowerCase().trim();
+      if (term === '') {
         renderProjects(projects);
         return;
       }
-
       const filtered = projects.filter(p => 
-        p.name.toLowerCase().includes(searchTerm) ||
-        p.desc.toLowerCase().includes(searchTerm) ||
-        p.category.toLowerCase().includes(searchTerm)
+        p.name.toLowerCase().includes(term) ||
+        p.desc.toLowerCase().includes(term) ||
+        p.category.toLowerCase().includes(term)
       );
-      
       renderProjects(filtered);
     });
 
-    // Navigasi
+    // Navigation
     const scrollContainer = document.getElementById('project-grid');
     const prevBtn = document.getElementById('prevBtn');
     const nextBtn = document.getElementById('nextBtn');
