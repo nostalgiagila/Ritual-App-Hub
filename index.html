@@ -4,6 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ritual App Hub</title>
+  
+  <!-- Favicon / Icon Tab -->
+  <link rel="icon" type="image/png" href="ritual-logo.png">
+  <link rel="apple-touch-icon" href="ritual-logo.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="ritual-logo.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="ritual-logo.png">
+
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <style>
@@ -195,7 +202,7 @@
     }
 
     function animate() {
-      ctx.fillStyle = 'rgba(5, 5, 5, 0.15)'; // Background tetap gelap
+      ctx.fillStyle = 'rgba(5, 5, 5, 0.15)';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
       particles.forEach(p => { p.update(); p.draw(); });
       connectParticles();
@@ -207,44 +214,43 @@
     for (let i = 0; i < 80; i++) particles.push(new Particle());
     animate();
 
-// 33 Projects - Nama & Deskripsi sudah disesuaikan
-const projects = [
-  {name:"Ritual Token Launcher", desc:"Easy token launcher on Ritual testnet.", category:"Tool", image:"https://raw.githubusercontent.com/nostalgiagila/ritual-testnet-hub/main/images/Screenshot_1.png", link:"https://ritual-token-launch--rizkyalvonzo8.replit.app/"},
-  {name:"Ritual On-Chain ID", desc:"Decentralized identity system on Ritual.", category:"Infrastructure", image:"https://raw.githubusercontent.com/nostalgiagila/ritual-testnet-hub/main/images/Screenshot_2.png", link:"https://ritual-onchain-id.vercel.app/"},
-  {name:"Web3 Profile Mint", desc:"Mint your X (Twitter) profile as NFT.", category:"NFT", image:"https://raw.githubusercontent.com/nostalgiagila/ritual-testnet-hub/main/images/Screenshot_3.png", link:"https://web-3-profile-mint--rolex9723060.replit.app/"},
-  {name:"Ritual Stats Checker", desc:"Analyze wallet statistics and activity.", category:"Tool", image:"https://raw.githubusercontent.com/nostalgiagila/ritual-testnet-hub/main/images/Screenshot_4.png", link:"https://ritual-stats-check.vercel.app/"},
-  {name:"Ritual Name Service", desc:"Check and register names on Ritual.", category:"Tool", image:"https://raw.githubusercontent.com/nostalgiagila/ritual-testnet-hub/main/images/Screenshot_5.png", link:"https://ritual-names.vercel.app/"},
-  {name:"Haezl Trading Agent", desc:"Autonomous AI-powered trading agent.", category:"AI Agent", image:"https://raw.githubusercontent.com/nostalgiagila/ritual-testnet-hub/main/images/Screenshot_6.png", link:"https://haezl-trading.info/#dashboard"},
-  {name:"Gritual Striker", desc:"Daily strike and engagement tool.", category:"SocialFi", image:"https://raw.githubusercontent.com/nostalgiagila/ritual-testnet-hub/main/images/Screenshot_7.png", link:"https://gritual-striker.vercel.app/"},
-  {name:"Ritual Searcher", desc:"Advanced search tool for Ritual ecosystem.", category:"Tool", image:"https://raw.githubusercontent.com/nostalgiagila/ritual-testnet-hub/main/images/Screenshot_8.png", link:"https://ritual-searcher--tanjir9721.replit.app/"},
-  {name:"Ritual Perp DEX", desc:"Perpetual futures trading platform.", category:"DeFi", image:"https://raw.githubusercontent.com/nostalgiagila/ritual-testnet-hub/main/images/Screenshot_9.png", link:"https://ritual-perp-dex.replit.app/"},
-  {name:"Ritual Casino", desc:"Decentralized casino games on Ritual.", category:"GameFi", image:"https://raw.githubusercontent.com/nostalgiagila/ritual-testnet-hub/main/images/Screenshot_10.png", link:"https://ritualcasino.lovable.app/"},
-  {name:"Prediction Market", desc:"AI-powered prediction market.", category:"Prediction", image:"https://raw.githubusercontent.com/nostalgiagila/ritual-testnet-hub/main/images/Screenshot_11.png", link:"https://oracle-predict-market--cahyaeth.replit.app/"},
-  {name:"Ritual Testnet Hub", desc:"Central hub for Ritual testnet projects.", category:"Hub", image:"https://raw.githubusercontent.com/nostalgiagila/ritual-testnet-hub/main/images/Screenshot_12.png", link:"https://ritual-testnet-hub.vercel.app"},
-  {name:"Ritual Bounty Card", desc:"Generate your personal bounty card.", category:"NFT", image:"https://raw.githubusercontent.com/nostalgiagila/ritual-testnet-hub/main/images/Screenshot_13.png", link:"https://wanted-on-ritual.replit.app/"},
-  {name:"Ritual Recogniser", desc:"AI recognition and analysis tool.", category:"AI Tool", image:"https://raw.githubusercontent.com/nostalgiagila/ritual-testnet-hub/main/images/Screenshot_14.png", link:"https://ritual-recognition.lovable.app/"},
-  {name:"Ritual Builder Proof", desc:"Proof of contribution for builders.", category:"Tool", image:"https://raw.githubusercontent.com/nostalgiagila/ritual-testnet-hub/main/images/Screenshot_15.png", link:"https://ritual-builder-proof.pages.dev/"},
-  {name:"Ritual Tamagotchi", desc:"Virtual pet blockchain game.", category:"GameFi", image:"https://raw.githubusercontent.com/nostalgiagila/ritual-testnet-hub/main/images/Screenshot_16.png", link:"https://ritual-tamagotchi.vercel.app/"},
-  {name:"Contract Creator", desc:"No-code smart contract generator.", category:"Tool", image:"https://raw.githubusercontent.com/nostalgiagila/ritual-testnet-hub/main/images/Screenshot_17.png", link:"https://ritual-create-contract.vercel.app/"},
-  {name:"Ritual Mission Console", desc:"Mission and quest management system.", category:"Tool", image:"https://raw.githubusercontent.com/nostalgiagila/ritual-testnet-hub/main/images/Screenshot_18.png", link:"https://ritual-console.netlify.app/"},
-  {name:"Jumping Siggy", desc:"Fun casual jumping game.", category:"GameFi", image:"https://raw.githubusercontent.com/nostalgiagila/ritual-testnet-hub/main/images/Screenshot_19.png", link:"https://jumping-siggy-the-pussy.vercel.app/"},
-  {name:"Ritual Community Map", desc:"Interactive Ritual ecosystem map.", category:"Tool", image:"https://raw.githubusercontent.com/nostalgiagila/ritual-testnet-hub/main/images/Screenshot_20.png", link:"https://ritual-foundation--tanjiro97211.replit.app/"},
-  {name:"Rekt or Rich", desc:"Fun prediction game on Ritual.", category:"Prediction", image:"https://raw.githubusercontent.com/nostalgiagila/ritual-testnet-hub/main/images/Screenshot_21.png", link:"https://ramavenom.github.io/rekt-or-rich/"},
-  {name:"Ritual Memory Vault", desc:"Secure memory and data vault.", category:"Tool", image:"https://raw.githubusercontent.com/nostalgiagila/ritual-testnet-hub/main/images/Screenshot_22.png", link:"https://ritual-memory-vault.replit.app/"},
-  {name:"Ritual Testnet Apps", desc:"Directory of Ritual testnet applications.", category:"Hub", image:"https://raw.githubusercontent.com/nostalgiagila/ritual-testnet-hub/main/images/Screenshot_23.png", link:"https://ritual-testnet-apps.vercel.app/"},
-  {name:"Ritual Micro Tap", desc:"Simple tap-to-earn game.", category:"GameFi", image:"https://raw.githubusercontent.com/nostalgiagila/ritual-testnet-hub/main/images/Screenshot_24.png", link:"https://ritual-micro-tap.vercel.app/"},
-  {name:"Ritual Score Checker", desc:"Check your on-chain activity score.", category:"Tool", image:"https://raw.githubusercontent.com/nostalgiagila/ritual-testnet-hub/main/images/Screenshot_25.png", link:"https://ritual-score-checker--0xrumora.replit.app/"},
-  {name:"Ritual Faucet", desc:"Community faucet for testnet tokens.", category:"Tool", image:"https://raw.githubusercontent.com/nostalgiagila/ritual-testnet-hub/main/images/Screenshot_26.png", link:"https://ritual-faucet-blueprint--ritualcommunity.replit.app/"},
-  {name:"Siggy Power Cards", desc:"Collectible power cards game.", category:"GameFi", image:"https://raw.githubusercontent.com/nostalgiagila/ritual-testnet-hub/main/images/Screenshot_27.png", link:"https://siggy-power-cards.vercel.app/"},
-  {name:"Ritual Casino Quest", desc:"Quest-based casino experience.", category:"GameFi", image:"https://raw.githubusercontent.com/nostalgiagila/ritual-testnet-hub/main/images/Screenshot_28.png", link:"https://ritual-casino-quest.lovable.app/"},
-  {name:"Ritual Oracle", desc:"Advanced oracle service.", category:"Infrastructure", image:"https://raw.githubusercontent.com/nostalgiagila/ritual-testnet-hub/main/images/Screenshot_29.png", link:"https://ritual-oracle-two.vercel.app/"},
-  {name:"Ritual Bubble Shooter", desc:"Classic bubble shooter game.", category:"GameFi", image:"https://raw.githubusercontent.com/nostalgiagila/ritual-testnet-hub/main/images/Screenshot_30.png", link:"https://ritual-bubble-shooter-jt.lovable.app/"},
-  {name:"Siggy Pixelverse", desc:"Pixel art universe by Siggy.", category:"GameFi", image:"https://raw.githubusercontent.com/nostalgiagila/ritual-testnet-hub/main/images/Screenshot_31.png", link:"https://siggy-pixelverse.lovable.app/"},
-  
-  // Project ke-33
-  {name:"Ritual App Hub", desc:"List of applications built by the Ritual community.", category:"Hub", image:"",
-image:"https://raw.githubusercontent.com/nostalgiagila/ritual-testnet-hub/main/images/Screenshot_32.png", link:"https://ritualapphub.vercel.app"}
-];
+    // 33 Projects
+    const projects = [
+      {name:"Ritual Token Launcher", desc:"Easy token launcher on Ritual testnet.", category:"Tool", image:"https://raw.githubusercontent.com/nostalgiagila/ritual-testnet-hub/main/images/Screenshot_1.png", link:"https://ritual-token-launch--rizkyalvonzo8.replit.app/"},
+      {name:"Ritual On-Chain ID", desc:"Decentralized identity system on Ritual.", category:"Infrastructure", image:"https://raw.githubusercontent.com/nostalgiagila/ritual-testnet-hub/main/images/Screenshot_2.png", link:"https://ritual-onchain-id.vercel.app/"},
+      {name:"Web3 Profile Mint", desc:"Mint your X (Twitter) profile as NFT.", category:"NFT", image:"https://raw.githubusercontent.com/nostalgiagila/ritual-testnet-hub/main/images/Screenshot_3.png", link:"https://web-3-profile-mint--rolex9723060.replit.app/"},
+      {name:"Ritual Stats Checker", desc:"Analyze wallet statistics and activity.", category:"Tool", image:"https://raw.githubusercontent.com/nostalgiagila/ritual-testnet-hub/main/images/Screenshot_4.png", link:"https://ritual-stats-check.vercel.app/"},
+      {name:"Ritual Name Service", desc:"Check and register names on Ritual.", category:"Tool", image:"https://raw.githubusercontent.com/nostalgiagila/ritual-testnet-hub/main/images/Screenshot_5.png", link:"https://ritual-names.vercel.app/"},
+      {name:"Haezl Trading Agent", desc:"Autonomous AI-powered trading agent.", category:"AI Agent", image:"https://raw.githubusercontent.com/nostalgiagila/ritual-testnet-hub/main/images/Screenshot_6.png", link:"https://haezl-trading.info/#dashboard"},
+      {name:"Gritual Striker", desc:"Daily strike and engagement tool.", category:"SocialFi", image:"https://raw.githubusercontent.com/nostalgiagila/ritual-testnet-hub/main/images/Screenshot_7.png", link:"https://gritual-striker.vercel.app/"},
+      {name:"Ritual Searcher", desc:"Advanced search tool for Ritual ecosystem.", category:"Tool", image:"https://raw.githubusercontent.com/nostalgiagila/ritual-testnet-hub/main/images/Screenshot_8.png", link:"https://ritual-searcher--tanjir9721.replit.app/"},
+      {name:"Ritual Perp DEX", desc:"Perpetual futures trading platform.", category:"DeFi", image:"https://raw.githubusercontent.com/nostalgiagila/ritual-testnet-hub/main/images/Screenshot_9.png", link:"https://ritual-perp-dex.replit.app/"},
+      {name:"Ritual Casino", desc:"Decentralized casino games on Ritual.", category:"GameFi", image:"https://raw.githubusercontent.com/nostalgiagila/ritual-testnet-hub/main/images/Screenshot_10.png", link:"https://ritualcasino.lovable.app/"},
+      {name:"Prediction Market", desc:"AI-powered prediction market.", category:"Prediction", image:"https://raw.githubusercontent.com/nostalgiagila/ritual-testnet-hub/main/images/Screenshot_11.png", link:"https://oracle-predict-market--cahyaeth.replit.app/"},
+      {name:"Ritual Testnet Hub", desc:"Central hub for Ritual testnet projects.", category:"Hub", image:"https://raw.githubusercontent.com/nostalgiagila/ritual-testnet-hub/main/images/Screenshot_12.png", link:"https://ritual-testnet-hub.vercel.app"},
+      {name:"Ritual Bounty Card", desc:"Generate your personal bounty card.", category:"NFT", image:"https://raw.githubusercontent.com/nostalgiagila/ritual-testnet-hub/main/images/Screenshot_13.png", link:"https://wanted-on-ritual.replit.app/"},
+      {name:"Ritual Recogniser", desc:"AI recognition and analysis tool.", category:"AI Tool", image:"https://raw.githubusercontent.com/nostalgiagila/ritual-testnet-hub/main/images/Screenshot_14.png", link:"https://ritual-recognition.lovable.app/"},
+      {name:"Ritual Builder Proof", desc:"Proof of contribution for builders.", category:"Tool", image:"https://raw.githubusercontent.com/nostalgiagila/ritual-testnet-hub/main/images/Screenshot_15.png", link:"https://ritual-builder-proof.pages.dev/"},
+      {name:"Ritual Tamagotchi", desc:"Virtual pet blockchain game.", category:"GameFi", image:"https://raw.githubusercontent.com/nostalgiagila/ritual-testnet-hub/main/images/Screenshot_16.png", link:"https://ritual-tamagotchi.vercel.app/"},
+      {name:"Contract Creator", desc:"No-code smart contract generator.", category:"Tool", image:"https://raw.githubusercontent.com/nostalgiagila/ritual-testnet-hub/main/images/Screenshot_17.png", link:"https://ritual-create-contract.vercel.app/"},
+      {name:"Ritual Mission Console", desc:"Mission and quest management system.", category:"Tool", image:"https://raw.githubusercontent.com/nostalgiagila/ritual-testnet-hub/main/images/Screenshot_18.png", link:"https://ritual-console.netlify.app/"},
+      {name:"Jumping Siggy", desc:"Fun casual jumping game.", category:"GameFi", image:"https://raw.githubusercontent.com/nostalgiagila/ritual-testnet-hub/main/images/Screenshot_19.png", link:"https://jumping-siggy-the-pussy.vercel.app/"},
+      {name:"Ritual Community Map", desc:"Interactive Ritual ecosystem map.", category:"Tool", image:"https://raw.githubusercontent.com/nostalgiagila/ritual-testnet-hub/main/images/Screenshot_20.png", link:"https://ritual-foundation--tanjiro97211.replit.app/"},
+      {name:"Rekt or Rich", desc:"Fun prediction game on Ritual.", category:"Prediction", image:"https://raw.githubusercontent.com/nostalgiagila/ritual-testnet-hub/main/images/Screenshot_21.png", link:"https://ramavenom.github.io/rekt-or-rich/"},
+      {name:"Ritual Memory Vault", desc:"Secure memory and data vault.", category:"Tool", image:"https://raw.githubusercontent.com/nostalgiagila/ritual-testnet-hub/main/images/Screenshot_22.png", link:"https://ritual-memory-vault.replit.app/"},
+      {name:"Ritual Testnet Apps", desc:"Directory of Ritual testnet applications.", category:"Hub", image:"https://raw.githubusercontent.com/nostalgiagila/ritual-testnet-hub/main/images/Screenshot_23.png", link:"https://ritual-testnet-apps.vercel.app/"},
+      {name:"Ritual Micro Tap", desc:"Simple tap-to-earn game.", category:"GameFi", image:"https://raw.githubusercontent.com/nostalgiagila/ritual-testnet-hub/main/images/Screenshot_24.png", link:"https://ritual-micro-tap.vercel.app/"},
+      {name:"Ritual Score Checker", desc:"Check your on-chain activity score.", category:"Tool", image:"https://raw.githubusercontent.com/nostalgiagila/ritual-testnet-hub/main/images/Screenshot_25.png", link:"https://ritual-score-checker--0xrumora.replit.app/"},
+      {name:"Ritual Faucet", desc:"Community faucet for testnet tokens.", category:"Tool", image:"https://raw.githubusercontent.com/nostalgiagila/ritual-testnet-hub/main/images/Screenshot_26.png", link:"https://ritual-faucet-blueprint--ritualcommunity.replit.app/"},
+      {name:"Siggy Power Cards", desc:"Collectible power cards game.", category:"GameFi", image:"https://raw.githubusercontent.com/nostalgiagila/ritual-testnet-hub/main/images/Screenshot_27.png", link:"https://siggy-power-cards.vercel.app/"},
+      {name:"Ritual Casino Quest", desc:"Quest-based casino experience.", category:"GameFi", image:"https://raw.githubusercontent.com/nostalgiagila/ritual-testnet-hub/main/images/Screenshot_28.png", link:"https://ritual-casino-quest.lovable.app/"},
+      {name:"Ritual Oracle", desc:"Advanced oracle service.", category:"Infrastructure", image:"https://raw.githubusercontent.com/nostalgiagila/ritual-testnet-hub/main/images/Screenshot_29.png", link:"https://ritual-oracle-two.vercel.app/"},
+      {name:"Ritual Bubble Shooter", desc:"Classic bubble shooter game.", category:"GameFi", image:"https://raw.githubusercontent.com/nostalgiagila/ritual-testnet-hub/main/images/Screenshot_30.png", link:"https://ritual-bubble-shooter-jt.lovable.app/"},
+      {name:"Siggy Pixelverse", desc:"Pixel art universe by Siggy.", category:"GameFi", image:"https://raw.githubusercontent.com/nostalgiagila/ritual-testnet-hub/main/images/Screenshot_31.png", link:"https://siggy-pixelverse.lovable.app/"},
+      
+      // Project ke-33
+      {name:"Ritual App Hub", desc:"List of applications built by the Ritual community.", category:"Hub", image:"", link:"https://ritualapphub.vercel.app"}
+    ];
 
     const grid = document.getElementById('project-grid');
     projects.forEach(p => {
