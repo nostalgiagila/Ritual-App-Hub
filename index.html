@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ritual Testnet Hub</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    body { 
+      background-color: #050505; 
+      font-family: system-ui; 
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    main { flex: 1; display: flex; align-items: center; justify-content: center; }
+    canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; opacity: 0.18; }
+
+    .main-content { width: 100%; max-width: 1200px; padding: 0 20px; }
+
+    .projects-wrapper {
+      overflow: visible;
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+    }
+    .projects-scroll {
+      display: flex;
+      gap: 24px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      scrollbar-width: none;
+    }
+    .projects-scroll::-webkit-scrollbar { display: none; }
+
+    .project-card {
+      flex: 0 0 calc(33.333% - 16px);
+      scroll-snap-align: start;
+      min-height: 355px;
+      background: #0a0a0a;
+      border: 1px solid #27272a;
+      border-radius: 20px;
+      overflow: hidden;
+      transition: all 0.4s ease;
+      display: flex;
+      flex-direction: column;
+    }
+    .project-card:hover {
+      transform: scale(1.04);
+      border-color: #22c55e;
+    }
+    .project-card img {
+      height: 160px;
+      object-fit: cover;
+      width: 100%;
+    }
+
+    .nav-btn {
+      width: 62px;
+      height: 62px;
+      background: linear-gradient(to right, #22c55e, #4ade80);
+      color: black;
+      font-size: 34px;
+      border-radius: 9999px;
+      transition: all 0.3s ease;
+    }
+    .nav-btn:hover {
+      transform: scale(1.15);
+      box-shadow: 0 0 25px rgba(34, 197, 94, 0.8);
+    }
+    .btn-pos-left { left: -80px; }
+    .btn-pos-right { right: -80px; }
+
+    @media (max-width: 1350px) {
+      .btn-pos-left { left: -40px; }
+      .btn-pos-right { right: -40px; }
+    }
+    @media (max-width: 768px) {
+      .btn-pos-left { left: -20px; }
+      .btn-pos-right { right: -20px; }
+      .nav-btn { width: 45px; height: 45px; font-size: 24px; }
+    }
+  </style>
+</head>
+<body class="text-white">
+  <canvas id="networkCanvas"></canvas>
+
+  <main>
+    <div class="main-content">
+      <!-- Header -->
+      <div class="flex flex-col md:flex-row justify-between items-center mb-8 gap-6">
+        <div class="flex items-center gap-4">
+          <img src="ritual-logo.png" alt="Ritual Logo" class="w-10 h-10 md:w-12 md:h-12 object-contain">
+          <div>
+            <h1 class="text-3xl md:text-4xl font-bold tracking-tight">Ritual Testnet Hub</h1>
+            <p class="text-base md:text-lg text-zinc-400">List of applications built by the Ritual community</p>
+          </div>
+        </div>
+        <a href="https://faucet.ritualfoundation.org/" target="_blank"
+           class="flex items-center gap-3 bg-gradient-to-r from-emerald-500 to-green-500 hover:brightness-110 px-8 py-3 rounded-3xl font-semibold text-sm md:text-base transition-all hover:scale-105 text-black whitespace-nowrap">
+          <i class="fas fa-faucet"></i> Request Testnet Tokens
+        </a>
+      </div>
+
+      <!-- Search -->
+      <div class="mb-10">
+        <div class="relative max-w-md mx-auto">
+          <input type="text" id="searchInput" placeholder="Search projects..."
+                 class="w-full bg-zinc-900 border border-zinc-700 focus:border-emerald-500 rounded-3xl py-4 px-6 pl-12 text-white placeholder-zinc-500 focus:outline-none">
+          <i class="fas fa-search absolute left-5 top-1/2 -translate-y-1/2 text-zinc-500"></i>
+        </div>
+      </div>
+
+      <!-- Carousel -->
+      <div class="projects-wrapper">
+        <button id="prevBtn" class="nav-btn absolute btn-pos-left top-1/2 -translate-y-1/2 z-30">‹</button>
+        <div id="project-grid" class="projects-scroll flex gap-6 overflow-x-auto pb-8"></div>
+        <button id="nextBtn" class="nav-btn absolute btn-pos-right top-1/2 -translate-y-1/2 z-30">›</button>
+      </div>
+    </div>
+  </main>
+
+  <!-- Fixed Footer -->
+  <footer class="bg-zinc-950 border-t border-zinc-800 py-6 px-6 text-center text-zinc-500 mt-auto">
+    <div class="max-w-7xl mx-auto">
+      <p class="mb-2">Built with ❤️ for the Ritual Community</p>
+      <p class="text-sm">
+        Made by 
+        <a href="https://x.com/nostalgiagila" target="_blank" class="hover:text-emerald-400 transition underline">
+          @nostalgiagila
+        </a>
+      </p>
+      <div class="flex justify-center gap-6 mt-4 text-xl">
+        <a href="https://ritual.net" target="_blank" class="hover:text-white transition"><i class="fas fa-globe"></i></a>
+        <a href="https://x.com/ritualnet" target="_blank" class="hover:text-white transition"><i class="fab fa-x-twitter"></i></a>
+        <a href="https://explorer.ritualfoundation.org" target="_blank" class="hover:text-white transition"><i class="fas fa-chart-bar"></i></a>
+      </div>
+      <p class="text-xs mt-6 text-zinc-600">© 2026 Ritual Testnet Hub • Not affiliated with Ritual Foundation</p>
+    </div>
+  </footer>
+
+  <script>
+    // Network Animation - Hanya Dot yang Menyala
+    const canvas = document.getElementById('networkCanvas');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+
+    class Particle {
+      constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 3 + 1.5;
+        this.speedX = Math.random() * 0.8 - 0.4;
+        this.speedY = Math.random() * 0.8 - 0.4;
+      }
+      update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+        if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+        if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+      }
+      draw() {
+        ctx.shadowBlur = 25;
+        ctx.shadowColor = '#4ade80';
+        ctx.fillStyle = '#86efac';
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+
+    function connectParticles() {
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+          if (distance < 115) {
+            ctx.strokeStyle = `rgba(134, 239, 172, ${0.5 - distance / 115})`;
+            ctx.lineWidth = 0.7;
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.stroke();
+          }
+        }
+      }
+    }
+
+    function animate() {
+      ctx.fillStyle = 'rgba(5, 5, 5, 0.15)'; // Background tetap gelap
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      particles.forEach(p => { p.update(); p.draw(); });
+      connectParticles();
+      requestAnimationFrame(animate);
+    }
+
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+    for (let i = 0; i < 80; i++) particles.push(new Particle());
+    animate();
+
+    // 15 Projects
+    const projects = [
+      {name:"AI Trading Agent", desc:"Autonomous trading bot using Ritual AI inference.", category:"AI Agent", image:"https://picsum.photos/id/1015/600/300", link:"#"},
+      {name:"Decentralized Oracle", desc:"Oracle network for AI model outputs on-chain.", category:"Infrastructure", image:"https://picsum.photos/id/201/600/300", link:"#"},
+      {name:"NFT Marketplace", desc:"Community NFT marketplace powered by Ritual agents.", category:"NFT", image:"https://picsum.photos/id/301/600/300", link:"#"},
+      {name:"DeFi Yield Optimizer", desc:"Smart yield farming with AI strategy suggestions.", category:"DeFi", image:"https://picsum.photos/id/401/600/300", link:"#"},
+      {name:"Autonomous DAO", desc:"Self-governing DAO managed by Ritual agents.", category:"Governance", image:"https://picsum.photos/id/501/600/300", link:"#"},
+      {name:"Prediction Market", desc:"AI-powered prediction market on testnet.", category:"Prediction", image:"https://picsum.photos/id/601/600/300", link:"#"},
+      {name:"SocialFi Platform", desc:"Decentralized social with AI moderation.", category:"SocialFi", image:"https://picsum.photos/id/701/600/300", link:"#"},
+      {name:"GameFi Arena", desc:"Play-to-earn game using Ritual AI NPCs.", category:"GameFi", image:"https://picsum.photos/id/801/600/300", link:"#"},
+      {name:"Privacy Agent", desc:"Confidential AI computation using TEE.", category:"Privacy", image:"https://picsum.photos/id/901/600/300", link:"#"},
+      {name:"Agent Launcher", desc:"No-code tool to deploy autonomous agents.", category:"Tool", image:"https://picsum.photos/id/1005/600/300", link:"#"},
+      {name:"Cross-Chain Bridge", desc:"Bridge with AI route optimization.", category:"Bridge", image:"https://picsum.photos/id/133/600/300", link:"#"},
+      {name:"Data Marketplace", desc:"Buy and sell verified AI training data.", category:"Marketplace", image:"https://picsum.photos/id/201/600/300", link:"#"},
+      {name:"AI Content Generator", desc:"Generate content with Ritual AI models.", category:"AI Tool", image:"https://picsum.photos/id/251/600/300", link:"#"},
+      {name:"Decentralized Identity", desc:"Secure identity management on Ritual.", category:"Identity", image:"https://picsum.photos/id/351/600/300", link:"#"},
+      {name:"Ritual Explorer", desc:"Blockchain explorer with AI insights.", category:"Tool", image:"https://picsum.photos/id/451/600/300", link:"#"}
+    ];
+
+    const grid = document.getElementById('project-grid');
+    projects.forEach(p => {
+      const cardHTML = `
+        <div class="project-card bg-zinc-950 border border-zinc-800 rounded-3xl overflow-hidden group">
+          <img src="${p.image}" alt="${p.name}">
+          <div class="p-5 flex-1 flex flex-col">
+            <h3 class="text-lg font-semibold mb-2">${p.name}</h3>
+            <p class="text-zinc-400 text-sm leading-tight mb-4 flex-1">${p.desc}</p>
+            <span class="inline-block px-3 py-1 text-xs bg-emerald-900 text-emerald-400 rounded-full mb-4">${p.category}</span>
+            <a href="${p.link}" target="_blank" class="mt-auto block w-full py-3 text-center border border-emerald-500 hover:bg-emerald-500 hover:text-black rounded-2xl text-sm font-medium transition">
+              Launch Project →
+            </a>
+          </div>
+        </div>
+      `;
+      grid.innerHTML += cardHTML;
+    });
+
+    // Navigasi
+    const scrollContainer = document.getElementById('project-grid');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+
+    prevBtn.addEventListener('click', () => scrollContainer.scrollBy({ left: -840, behavior: 'smooth' }));
+    nextBtn.addEventListener('click', () => scrollContainer.scrollBy({ left: 840, behavior: 'smooth' }));
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'ArrowLeft') prevBtn.click();
+      if (e.key === 'ArrowRight') nextBtn.click();
+    });
+  </script>
+</body>
+</html>
