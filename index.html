@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -247,19 +247,27 @@
       {name:"Ritual Bubble Shooter", desc:"Classic bubble shooter game.", category:"GameFi", image:"https://raw.githubusercontent.com/nostalgiagila/Ritual-App-Hub/main/images/Screenshot_30.png", link:"https://ritual-bubble-shooter-jt.lovable.app/"},
       {name:"Siggy Pixelverse", desc:"Pixel art universe by Siggy.", category:"GameFi", image:"https://raw.githubusercontent.com/nostalgiagila/Ritual-App-Hub/main/images/Screenshot_31.png", link:"https://siggy-pixelverse.lovable.app/"},
       
-      // Project Ritual Check (Baru)
-      {name:"Ritual Community Chest", desc:"Comprehensive checker for Ritual Testnet activity and stats.", category:"Tool", image:"https://raw.githubusercontent.com/nostalgiagila/Ritual-App-Hub/main/images/Screenshot_33.png", link:"https://ritual-chest-unlock--riyaderiyade200.replit.app"},
-
-      // Project Terakhir
-      {name:"Ritual App Hub", desc:"List of applications built by the Ritual community.", category:"Hub", image:"https://raw.githubusercontent.com/nostalgiagila/Ritual-App-Hub/main/images/Screenshot_32.png", link:"https://ritualapp-hub.vercel.app"},
+      {name:"Ritual Community Chest", desc:"Open community chests and claim rewards on Ritual Testnet.", category:"GameFi", image:"https://raw.githubusercontent.com/nostalgiagila/Ritual-App-Hub/main/images/Screenshot_33.png", link:"https://ritual-chest-unlock--riyaderiyade200.replit.app"},
       {name:"Ritual Wordle", desc:"Word guessing game with Ritual theme on testnet.", category:"GameFi", image:"https://raw.githubusercontent.com/nostalgiagila/Ritual-App-Hub/main/images/Screenshot_34.png", link:"https://ritual-wordle.vercel.app"},
       {name:"RitualPad", desc:"Memecoin Terminal / Rocket Pad on Ritual Testnet", category:"DeFi", image:"https://raw.githubusercontent.com/nostalgiagila/Ritual-App-Hub/main/images/Screenshot_36.png", link:"https://ritual-rocketpad.vercel.app"},
       {name:"Ritual Arena", desc:"Turn-based battle arena with on-chain ranking on Ritual Testnet.", category:"GameFi", image:"https://raw.githubusercontent.com/nostalgiagila/Ritual-App-Hub/main/images/Screenshot_37.png", link:"https://ritualarena1.vercel.app"},
       {name:"Dia Routine Bot", desc:"Daily routine tracker & rewards bot on Ritual Testnet via Telegram.", category:"Tool", image:"https://raw.githubusercontent.com/nostalgiagila/Ritual-App-Hub/main/images/Screenshot_38.png", link:"https://t.me/DiaRoutine_Bot"},
-      {name:"Ritual Poker Club", desc:"Collectible card game with charm mechanics on Ritual Testnet.", category:"GameFi", image:"https://raw.githubusercontent.com/nostalgiagila/Ritual-App-Hub/main/images/Screenshot_39.png", link:"https://ritual-card-charm.lovable.app"}
+      {name:"Ritual Card Charm", desc:"Collectible card game with charm mechanics on Ritual Testnet.", category:"GameFi", image:"https://raw.githubusercontent.com/nostalgiagila/Ritual-App-Hub/main/images/Screenshot_39.png", link:"https://ritual-card-charm.lovable.app"},
+
+      // Project Terakhir
+      {name:"Ritual App Hub", desc:"List of applications built by the Ritual community.", category:"Hub", image:"https://raw.githubusercontent.com/nostalgiagila/Ritual-App-Hub/main/images/Screenshot_32.png", link:"https://ritualapphub.vercel.app"}
     ];
 
     const grid = document.getElementById('project-grid');
+
+    // Fungsi Acak (hanya ini yang ditambahkan)
+    function shuffleArray(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+      return array;
+    }
 
     function renderProjects(filteredProjects) {
       grid.innerHTML = '';
@@ -281,13 +289,14 @@
       });
     }
 
-    renderProjects(projects);
+    // Tampilan acak saat pertama kali buka atau refresh
+    renderProjects(shuffleArray([...projects]));
 
     // Search Functionality
     document.getElementById('searchInput').addEventListener('input', (e) => {
       const term = e.target.value.toLowerCase().trim();
       if (term === '') {
-        renderProjects(projects);
+        renderProjects(shuffleArray([...projects]));
         return;
       }
       const filtered = projects.filter(p => 
