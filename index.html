@@ -86,6 +86,14 @@
       .btn-pos-left { left: -20px; }
       .btn-pos-right { right: -20px; }
       .nav-btn { width: 45px; height: 45px; font-size: 24px; }
+      
+      /* === PENAMBAHAN MOBILE FRIENDLY === */
+      .project-card {
+        flex: 0 0 100%;          /* satu kartu penuh di handphone */
+      }
+      .projects-scroll {
+        gap: 20px;                /* sedikit lebih rapat agar nyaman di layar kecil */
+      }
     }
   </style>
 </head>
@@ -270,7 +278,6 @@
 
     const grid = document.getElementById('project-grid');
 
-    // Fungsi Acak (hanya ini yang ditambahkan)
     function shuffleArray(array) {
       for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -299,10 +306,8 @@
       });
     }
 
-    // Tampilan acak saat pertama kali buka atau refresh
     renderProjects(shuffleArray([...projects]));
 
-    // Search Functionality
     document.getElementById('searchInput').addEventListener('input', (e) => {
       const term = e.target.value.toLowerCase().trim();
       if (term === '') {
@@ -317,7 +322,6 @@
       renderProjects(filtered);
     });
 
-    // Navigation
     const scrollContainer = document.getElementById('project-grid');
     const prevBtn = document.getElementById('prevBtn');
     const nextBtn = document.getElementById('nextBtn');
